@@ -120,3 +120,72 @@ h2 {
   text-align: center;
   color: gray;
 }
+.cocomoSection {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.cocomoInputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.cocomoResults {
+  padding: 10px;
+  background-color: #e8f5e9;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.cocomo-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
+}
+
+.cocomo-form h3 {
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.cocomo-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.cocomo-form input,
+.cocomo-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.cocomo-form .calculate-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cocomo-results {
+  background-color: #e8f5e9;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cocomo-results h3 {
+  margin-bottom: 10px;
+}

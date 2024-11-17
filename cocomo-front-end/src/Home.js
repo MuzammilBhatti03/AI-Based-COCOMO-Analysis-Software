@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./home.css";
+import CocomoWizard from "./CocomoWizard";
 
 const Home = ({ handleLogout }) => {
   const [companies, setCompanies] = useState([]);
@@ -7,6 +8,15 @@ const Home = ({ handleLogout }) => {
   const [selectedCompany, setSelectedCompany] = useState(null);
 
   const [newEmployee, setNewEmployee] = useState({ name: "", role: "" });
+
+  // COCOMO State
+  const [cocomoInputs, setCocomoInputs] = useState({
+    size: 100,
+    language: "C",
+    laborRate: 10,
+  });
+
+  const [cocomoResults, setCocomoResults] = useState(null);
 
   // Add a new company
   const addCompany = () => {
@@ -70,104 +80,42 @@ const Home = ({ handleLogout }) => {
     setCompanies(updatedCompanies);
   };
 
+  // Handle COCOMO Inputs
+  const handleCocomoInputChange = (e) => {
+    const { name, value } = e.target;
+    setCocomoInputs({ ...cocomoInputs, [name]: value });
+  };
+
+  // Calculate COCOMO Estimates
+  const calculateCocomo = () => {
+    const { size, laborRate } = cocomoInputs;
+    const effort = (size * 1.25).toFixed(1); // Effort = size * constant
+    const schedule = (effort / 3.8).toFixed(1); // Schedule = Effort / 3.8
+    const cost = (effort * laborRate).toFixed(1); // Cost = Effort * laborRate
+    setCocomoResults({ effort, schedule, cost });
+  };
+
   return (
-    <div className={styles.homeContainer}>
-      <header className={styles.header}>
-        <h1>Welcome to the Company Management System</h1>
-        <button onClick={handleLogout} className={styles.logoutButton}>
-          Logout
-        </button>
-      </header>
+    <div>
+    <header>
+      <h1>Company Management and COCOMO Estimation</h1>
+      <button onClick={handleLogout}>Logout</button>
+    </header>
 
-      <div className={styles.content}>
-        <section className={styles.companySection}>
-          <h2>Companies</h2>
-          <div className={styles.addCompany}>
-            <input
-              type="text"
-              value={newCompany}
-              onChange={(e) => setNewCompany(e.target.value)}
-              placeholder="Enter company name"
-              className={styles.input}
-            />
-            <button onClick={addCompany} className={styles.button}>
-              Add Company
-            </button>
-          </div>
+    {/* COCOMO Wizard */}
+    <CocomoWizard calculateCocomo={calculateCocomo} />
 
-          <ul className={styles.companyList}>
-            {companies.map((company) => (
-              <li
-                key={company.id}
-                className={`${styles.companyItem} ${
-                  selectedCompany?.id === company.id ? styles.selectedCompany : ""
-                }`}
-                onClick={() => setSelectedCompany(company)}
-              >
-                {company.name}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteCompany(company.id);
-                  }}
-                  className={styles.deleteButton}
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className={styles.employeeSection}>
-          <h2>Employees</h2>
-          {selectedCompany ? (
-            <>
-              <div className={styles.addEmployee}>
-                <input
-                  type="text"
-                  value={newEmployee.name}
-                  onChange={(e) =>
-                    setNewEmployee({ ...newEmployee, name: e.target.value })
-                  }
-                  placeholder="Employee name"
-                  className={styles.input}
-                />
-                <input
-                  type="text"
-                  value={newEmployee.role}
-                  onChange={(e) =>
-                    setNewEmployee({ ...newEmployee, role: e.target.value })
-                  }
-                  placeholder="Employee role"
-                  className={styles.input}
-                />
-                <button onClick={addEmployee} className={styles.button}>
-                  Add Employee
-                </button>
-              </div>
-              <ul className={styles.employeeList}>
-                {selectedCompany.employees.map((employee) => (
-                  <li key={employee.id} className={styles.employeeItem}>
-                    {employee.name} - {employee.role}
-                    <button
-                      onClick={() => deleteEmployee(employee.id)}
-                      className={styles.deleteButton}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : (
-            <p className={styles.noCompanyMessage}>
-              Select a company to view or add employees.
-            </p>
-          )}
-        </section>
+    {/* Results */}
+    {cocomoResults && (
+      <div className="cocomo-results">
+        <h3>COCOMO Results:</h3>
+        <p>Effort: {cocomoResults.effort} Person-Months</p>
+        <p>Schedule: {cocomoResults.schedule} Months</p>
+        <p>Cost: ${cocomoResults.cost}</p>
+        <p>Resources: {cocomoResults.resources}</p>
       </div>
-    </div>
+    )}
+  </div>
   );
 };
 
