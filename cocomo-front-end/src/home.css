@@ -1,0 +1,122 @@
+.homeContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+.logoutButton {
+  padding: 10px 20px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background-color: #d62839;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+.companySection,
+.employeeSection {
+  flex: 1;
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.addCompany,
+.addEmployee {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.companyList,
+.employeeList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.companyItem,
+.employeeItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.companyItem:hover,
+.employeeItem:hover {
+  background-color: #f0f8ff;
+}
+
+.selectedCompany {
+  background-color: #cfe2ff;
+  font-weight: bold;
+}
+
+.deleteButton {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #d62839;
+}
+
+.noCompanyMessage {
+  text-align: center;
+  color: gray;
+}

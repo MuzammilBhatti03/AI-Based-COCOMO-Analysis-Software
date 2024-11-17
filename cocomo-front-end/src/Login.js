@@ -1,41 +1,37 @@
 import React, { useState } from "react";
-import styles from "./myapp.css"; // Ensure it's using CSS Modules
-import LoadingScreen from "./LoadingScreen";
-
-const Login = () => {
+import { useNavigate } from "react-router-dom";
+import styles from "./myapp.css"; // Assuming you're using this CSS file
+import LoadingScreen from './LoadingScreen';
+const Login = ({ handleLogin }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // For navigation
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true
+    setLoading(true);
 
-    // Simulate 2 seconds delay for login processing
     setTimeout(() => {
-      console.log("Login Data:", formData);
-
-      // Check credentials after the delay
       if (formData.email === "abc@gmail.com" && formData.password === "123") {
         alert("Login successful");
+        handleLogin(); // Update authentication state
+        navigate("/home"); // Navigate to the Home page
       } else {
         alert("Invalid credentials");
       }
-
-      setLoading(false); // Set loading to false after credentials check
-    }, 2000); // 2000ms delay
+      setLoading(false);
+    }, 2000);
   };
 
   return (
     <div className={styles.container}>
       {loading ? (
-        <LoadingScreen loadingText="Please wait, data is loading..." />
+        <LoadingScreen loadingText="Loading... "/>
       ) : (
         <>
           <h2 className={styles.title}>Login</h2>
@@ -65,11 +61,20 @@ const Login = () => {
             <button
               type="submit"
               className={styles.button}
-              disabled={loading} // Disable button while loading
+              disabled={loading}
             >
-              {loading ? "Logging in..." : "Login"} {/* Show different text */}
+              Login
             </button>
           </form>
+          <p className={styles.text}>
+            Don't have an account?{" "}
+            <button
+              className={styles.linkButton}
+              onClick={() => navigate("/signup")}
+            >
+              Signup
+            </button>
+          </p>
         </>
       )}
     </div>
