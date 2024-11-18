@@ -1,7 +1,5 @@
 const axios = require('axios');
-
 const OPENAI_API_KEY = '';
-
 const getEffortEstimate = async (req, res) => {
   const { project_size, complexity_level, team_experience } = req.body;
 
