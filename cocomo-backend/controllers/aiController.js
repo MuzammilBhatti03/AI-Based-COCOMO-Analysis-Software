@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-//const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = '';
 
 const getEffortEstimate = async (req, res) => {
   const { project_size, complexity_level, team_experience } = req.body;
