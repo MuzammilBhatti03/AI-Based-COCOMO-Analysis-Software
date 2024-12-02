@@ -1,31 +1,33 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./myapp.css"; // Assuming you're using this CSS file
+import axios from "./axios"; // Import the custom axios instance
+import styles from "./myapp.css";
 import LoadingScreen from './LoadingScreen';
+
 const Login = ({ handleLogin }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
-      if (formData.email === "abc@gmail.com" && formData.password === "123") {
-        alert("Login successful");
-        handleLogin(); // Update authentication state
-        navigate("/home"); // Navigate to the Home page
-      } else {
-        alert("Invalid credentials");
-      }
+    try {
+      const response = await axios.post("/api/auth/login", formData); // Using axios instance
+      const { token } = response.data;
+      alert("Login successful");
+      handleLogin(token);
+    } catch (err) {
+      alert("Invalid credentials");
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
