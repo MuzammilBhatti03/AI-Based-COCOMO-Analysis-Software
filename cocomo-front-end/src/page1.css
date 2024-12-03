@@ -1,0 +1,93 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    color: #333;
+    height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .tab {
+    background-color: #30BEAD;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .tab.logout {
+    background-color: #ff6b6b;
+  }
+  
+  .tab:hover {
+    opacity: 0.9;
+  }
+  
+  .content {
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  .sidebar {
+    width: 20%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-right: 2px solid #ccc;
+  }
+  
+  .create-project-btn {
+    background-color: #30BEAD;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .create-project-btn:hover {
+    opacity: 0.9;
+  }
+  
+  .main {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f5f5f5;
+  }
+  
