@@ -1,5 +1,6 @@
 import React from "react";
-import "./Page1.css"; // CSS for styling
+import "./page1.css";
+
 
 const Page1 = () => {
   return (
